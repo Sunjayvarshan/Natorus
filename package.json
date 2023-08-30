@@ -11,12 +11,15 @@
   "author": "sunjay",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "global": "^4.4.0",
+    "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.2",
     "morgan": "^1.10.0",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "eslint": "^8.46.0",

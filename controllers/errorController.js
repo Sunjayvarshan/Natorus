@@ -29,6 +29,13 @@ module.exports = (err, req, res, next) => {
     });
   };
 
+  const handleJWTError = () =>
+    new AppError('Invalid token please login again ', 401);
+
+  const handleJWTExpiredError = () => {
+    new AppError('session Expired , please Login again', 401);
+  };
+
   const sendErrorProd = (err, res) => {
     // operational error , trusted error:snd messages to client
     if (err.isOperational) {
@@ -59,6 +66,8 @@ module.exports = (err, req, res, next) => {
     if (error.name === 'CastError') error = handleCastErrorDB(err);
     if (error.code === 11000) error = handleDuplicateFieldsDB(err);
     if (error.name === 'ValidationError') error = HandleValidationErrorDB(err);
+    if (error.name === 'JsonWebTokenError') error = handleJWTError();
+    if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
     sendErrorProd(error, res);
   }
 };
